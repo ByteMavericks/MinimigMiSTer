@@ -1,11 +1,11 @@
 #!/bin/bash
+
 #Simple script to download and assemble the necessary driver 
 #disks for Minimig on Mister, and an associated Amiga-side 
 #script to install them
 # Copyright 2021 Nick Lines / ByteMavericks
 #Uses the update_mister.sh as a base, which is
 # Copyright 2018-2020 Alessandro "Locutus73" Miele
-
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,12 +20,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
+echo "${0##*/}"
+echo "By Nick Lines / ByteMavericks."  
+echo "Based on update_mister script by Alessandro \"Locutus73\" Miele"
+echo "Creates ADFs with necessary files to support MiSTerFPGA unique features: RTG and Shared folder"
+echo
 
 # ========= OPTIONS ==================
 URL="https://github.com"
 CURL_RETRY="--connect-timeout 15 --max-time 120 --retry 3 --retry-delay 5 --show-error"
-
 ALLOW_INSECURE_SSL="true"
 
 # ========= CODE STARTS HERE =========
