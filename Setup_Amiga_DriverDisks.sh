@@ -1,4 +1,11 @@
 #!/bin/bash
+#Simple script to download and assemble the necessary driver 
+#disks for Minimig on Mister, and an associated Amiga-side 
+#script to install them
+# Copyright 2021 Nick Lines / ByteMavericks
+#Uses the update_mister.sh as a base, which is
+# Copyright 2018-2020 Alessandro "Locutus73" Miele
+
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +24,6 @@
 
 # ========= OPTIONS ==================
 URL="https://github.com"
-FILEURL="http://aminet.net/util/arc/lha.run"
 CURL_RETRY="--connect-timeout 15 --max-time 120 --retry 3 --retry-delay 5 --show-error"
 
 ALLOW_INSECURE_SSL="true"
