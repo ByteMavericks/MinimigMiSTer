@@ -1,0 +1,61 @@
+echo "MiSTer Minimig Support Setup"
+echo "This script will add Minimig support files to your setup"
+ask "Continue?"
+if WARN
+   echo "Installing"
+else
+   echo "Aborting"
+   quit
+endif
+cd ram:
+   echo "Checking LHA..."
+if exists c:lha
+   echo "...You already have LHA... skipping"
+else
+   echo "...You need lha: expanding and copying to c:"
+   copy MiSTerUtils:lha.run ram:
+   protect lha.run +e
+   ram:lha.run lha_68k >nil:
+   copy ram:lha_68k c:lha
+   delete ram:lha.run
+   delete ram:lha_68k
+endif
+   echo "Checking for Share..."
+assign share: exists >nil:  ;Check to see if Mister share is mounted
+if warn
+   if exists l:MiSTerFileSystem
+      echo "...MiSTerFileSystem already installed... skipping"
+   else
+      echo "...extracting and copying to sys:"
+      lha x MisterUtils:mister_share.lha ram:MS/ >nil:
+      copy ram:MS sys: all quiet
+      echo "...mounting Share:"
+      mount share:
+   endif
+else
+   echo "...Mister share already mounted!"
+endif
+echo "Checking for Picasso96..."
+if exists libs:Picasso96
+    echo "...Picasso96 libraries already installed - skipping"
+else
+    echo "...unpacking Picasso96 to RAM:"
+    echo "...please ensure you have Picasso96 disk in df1!  If not, you'll see a requester: please Go into the OSD and select picasso96.adf for df1"
+    echo "...when asked, select the UAEGFX board to install!"
+    lha -N x Picasso96:picasso96.lha ram:
+    cd ram:picasso96installer
+    installer installPicasso96
+    echo "...installer finished, tidying up"
+    if exists sys:devs/monitors/uaegfx
+       delete sys:devs/monitors/uaegfx#?
+    endif
+endif
+if exists sys:devs/monitors/MiSTer
+    echo "...graphics card support file already installed, skipping"
+else
+    echo "...extracting support files"
+    lha -N x MisterUtils:Mister_RTG.lha ram:RTG/
+    copy ram:RTG sys: all quiet
+endif
+
+ask "All complete.  Press enter to close this window!"
