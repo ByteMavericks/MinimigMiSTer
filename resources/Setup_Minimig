@@ -43,7 +43,7 @@ else
     echo "...please ensure you have Picasso96 disk in df1!  If not, you'll see a requester: please Go into the OSD and select picasso96.adf for df1"
     echo "...when asked, select the UAEGFX board to install!"
     lha -N x Picasso96:picasso96.lha ram:
-    cd ram:picasso96installer
+    cd ram:picasso96install
     installer installPicasso96
     echo "...installer finished, tidying up"
     if exists sys:devs/monitors/uaegfx
